@@ -1,0 +1,3 @@
+# Không cần thư viện Python bổ sung
+# Script chỉ sử dụng các thư viện chuẩn của Python
+
