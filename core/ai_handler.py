@@ -8,8 +8,8 @@ class AIHandler:
             base_url="https://openrouter.ai/api/v1",
             api_key=config.OPENROUTER_API_KEY,
         )
-        # Sử dụng model miễn phí từ OpenRouter
-        self.model = "arcee-ai/trinity-large-preview:free"
+        # Sử dụng GPT-3.5 Turbo qua OpenRouter
+        self.model = "openai/gpt-3.5-turbo"
         self.context_manager = ContextManager()
         self.system_prompt = """Bạn là một trợ lý AI thân thiện và hữu ích. Hãy trả lời bằng tiếng Việt một cách tự nhiên và dễ hiểu. Bạn có thể giúp đỡ người dùng với nhiều chủ đề khác nhau như: trả lời câu hỏi, giải thích khái niệm, hỗ trợ lập trình, tư vấn, trò chuyện, v.v., và hãy  bỏ qua các câu hỏi liên quan đến tình dục chiến tranh hoặc tương tự """
 

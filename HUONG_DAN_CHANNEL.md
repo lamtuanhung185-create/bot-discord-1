@@ -51,7 +51,7 @@ Khi bạn giới hạn channel, các tính năng sau CHỈ hoạt động trong 
 ### Commands Chat & AI:
 - `!ai` / `!chat` / `!ask` - Chat với AI
 - `!clear` / `!reset` - Xóa lịch sử chat với AI
-- `!tomtat` / `!summary` / `!tóm tắt` - Tóm tắt 80 tin nhắn gần nhất bằng AI
+
 
 ### Commands Game & Quiz:
 - `!quiz` - Bắt đầu quiz trắc nghiệm

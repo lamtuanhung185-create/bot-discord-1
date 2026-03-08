@@ -8,13 +8,14 @@ from pathlib import Path
 import time
 
 # ID kênh được phép dùng !superquiz
-SUPERQUIZ_CHANNEL_ID = [1418088580344971375]
+SUPERQUIZ_CHANNEL_ID = [1474535485488631911]  # Thay bằng ID kênh thực tế của bạn
 
 class Game(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.active_quizzes = {}  # Lưu trữ quiz đang hoạt động {channel_id: quiz_data}
         self.active_songs = {}  # Lưu trữ game hát đang hoạt động {channel_id: song_data}
+        # File quiz chính
         self.quiz_file = Path(__file__).parent.parent / 'data' / 'quiz_questions.json'
         self.leaderboard_file = Path(__file__).parent.parent / 'data' / 'leaderboard.json'
         self.songs_file = Path(__file__).parent.parent / 'data' / 'songs.json'
@@ -99,19 +100,19 @@ class Game(commands.Cog):
         print("✅ Đã xóa cache và reload questions từ file JSON")
     
     def load_questions(self):
-        """Load câu hỏi từ file JSON"""
+        """Load câu hỏi từ file quiz_questions.json"""
+        self.questions = []
         try:
-            # Đọc trực tiếp từ file, không cache
-            with open(self.quiz_file, 'r', encoding='utf-8') as f:
-                data = json.load(f)
-                # File JSON là array trực tiếp, không phải object với key 'questions'
-                if isinstance(data, list):
-                    self.questions = data
-                elif isinstance(data, dict):
-                    self.questions = data.get('questions', [])
-                else:
-                    self.questions = []
-            print(f"📚 Đã load {len(self.questions)} câu hỏi quiz")
+            if self.quiz_file.exists():
+                with open(self.quiz_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    if isinstance(data, list):
+                        self.questions = data
+                        print(f"✅ Đã load {len(self.questions)} câu hỏi từ quiz_questions.json")
+                    else:
+                        print(f"❌ Format file không đúng, cần là một list")
+            else:
+                print(f"⚠️ File không tồn tại: {self.quiz_file}")
         except Exception as e:
             print(f"❌ Lỗi khi load câu hỏi quiz: {e}")
             self.questions = []
@@ -154,7 +155,7 @@ class Game(commands.Cog):
         self.save_used_questions()
         print("🔄 Đã reset tiến trình quiz")
     
-    @commands.command(name='1232quiz')
+    @commands.command(name='quiz')
     @is_allowed_channel()
     async def quiz(self, ctx):
         """Bắt đầu một câu hỏi quiz. Trả lời đúng nhận khô gà!"""
@@ -330,11 +331,11 @@ class Game(commands.Cog):
             color=discord.Color.blue() if not is_superquiz else discord.Color.purple()
         )
         
-        footer_text = f"Bạn có 8 giây để trả lời! | Tiến độ: {current_position}/{len(self.questions)} câu hỏi"
+        footer_text = f"Bạn có 15  giây để trả lời! | Tiến độ: {current_position}/{len(self.questions)} câu hỏi"
         if is_superquiz:
             footer_text = f"Super Quiz đang chạy! | Tiến độ: {current_position}/{len(self.questions)} câu hỏi"
         else:
-            footer_text = f"Bạn có 8 giây để trả lời! | Tiến độ: {current_position}/{len(self.questions)} | Dùng !superquiz để tự động"
+            footer_text = f"Bạn có 15 giây để trả lời! | Tiến độ: {current_position}/{len(self.questions)} | Dùng !superquiz để tự động"
         
         embed.set_footer(text=footer_text)
         
@@ -356,9 +357,9 @@ class Game(commands.Cog):
         if is_superquiz and self.timer_active:
             await self.start_question_timer(channel)
         
-        # Đợi 8 giây - chỉ timeout cho quiz thường, superquiz sẽ không timeout
+        # Đợi 15giây - chỉ timeout cho quiz thường, superquiz sẽ không timeout
         if not is_superquiz:
-            for _ in range(6):
+            for _ in range(15):
                 await asyncio.sleep(1)
                 # Kiểm tra xem quiz đã bị xóa hoặc đã được trả lời chưa
                 if channel.id not in self.active_quizzes:
@@ -550,13 +551,6 @@ class Game(commands.Cog):
                 await asyncio.sleep(1)  # Đợi 1 giây trước khi chạy câu tiếp
                 if self.superquiz_active and self.superquiz_channel:
                     await self.start_quiz(self.superquiz_channel, is_superquiz=True)
-            
-            # Xóa tin nhắn thông báo sau 5 giây
-            await asyncio.sleep(5)
-            try:
-                await reward_msg.delete()
-            except:
-                pass
 
     @commands.command(name='superquiz')
     @is_allowed_channel()
@@ -616,7 +610,7 @@ class Game(commands.Cog):
         await asyncio.sleep(2)
         await self.start_quiz(ctx.channel, is_superquiz=True)
     
-    @commands.command(name='44stopsuperquiz')
+    @commands.command(name='stopsuperquiz')
     @is_allowed_channel()
     async def stop_superquiz(self, ctx):
         """Dừng chế độ Super Quiz"""
@@ -1276,9 +1270,9 @@ class Game(commands.Cog):
         self.timer_task = asyncio.create_task(self.question_timer_countdown(channel))
     
     async def question_timer_countdown(self, channel):
-        """Đếm ngược 7 giây và tự động chuyển câu"""
+        """Đếm ngược 16 giây và tự động chuyển câu"""
         try:
-            await asyncio.sleep(7)
+            await asyncio.sleep(16)  # Đợi 16 giây
             
             # Kiểm tra xem vẫn còn quiz không
             if channel.id not in self.active_quizzes:
