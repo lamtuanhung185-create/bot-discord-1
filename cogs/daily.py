@@ -82,7 +82,7 @@ SCHEDULES = [
         "embed_title": None,
         "embed_desc": None,
         "embed_color": None,
-        "enabled": True,   # ← Đổi thành True để bật
+        "enabled": False,   # ← Đổi thành True để bật
     },
 
 
@@ -151,6 +151,16 @@ SCHEDULES = [
         "hour": 23,
         "minute": 0,
         "message": "https://media.discordapp.net/attachments/1459229057706364939/1479860919713534062/unnamed.jpg?ex=69ad9361&is=69ac41e1&hm=14902184144a9c2996aebc3c0c01bc0b60ca5644051d7b073e8c863b84a0c383&=&format=webp&width=1403&height=810",
+        "embed_title": None,
+        "embed_desc": None,
+        "embed_color": None,
+        "enabled": True,   # ← Đổi thành True để bật
+    },
+
+     {
+        "hour": 0,
+        "minute": 0,
+        "message": "Xin chào khán giả của Spotify Mình là Phúc Nguyên đến từ đội hình tân binh toàn năng.Các ca khúc tân binh toàn năng đã có mặt trên Spotify rồi, đây là những bài hát mà mình rất trân trọng vì là kỉ niệm đẹp và hành trình trưởng thành mà mình được đồng hành cùng các anh em tại tân binh toàn năng Với mình, mỗi sân khấu là một kỉ niệm khó quên, là những giây phút áp lực lẫn hạnh phúc mà mình tin bạn sẽ cảm nhận qua âm nhạc Bạn thích ca khúc nào trong tân bình toàn năng? Hãy stream nó thật nhiều nhé! \nhttps://open.spotify.com/playlist/7v6nuLRgX7jpaubaQmcJDv?si=JTONuPrdQ2eQ4nCTpTHPjg&pi=Q_74oRejRkuTD",
         "embed_title": None,
         "embed_desc": None,
         "embed_color": None,
