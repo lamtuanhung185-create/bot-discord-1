@@ -149,7 +149,7 @@ class Noti1(commands.Cog):
             return
         
         # Kiểm tra nếu tin nhắn chứa "tư vấn"
-        if "tư vấn" in message.content.lower():
+        if "11111111111tư vấn" in message.content.lower():
             embed = discord.Embed(
                 title="🎯 Menu Tư Vấn",
                 description="Vui lòng chọn loại tư vấn bạn cần hỗ trợ:",
