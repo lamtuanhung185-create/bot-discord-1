@@ -181,7 +181,7 @@ class Love(commands.Cog):
 
     # ── Command chính (!lovecalc) ──────────────────────────────
 
-    LOVECALC_CHANNELS = {1446865411814588426, 1439553447384060047}
+    LOVECALC_CHANNELS = {1474535485488631911}
 
     @commands.command(name="lovecalc", aliases=["love", "tinhyeu"])
     async def lovecalc(self, ctx, user1: discord.Member = None,
