@@ -155,7 +155,7 @@ class Game(commands.Cog):
         self.save_used_questions()
         print("🔄 Đã reset tiến trình quiz")
     
-    @commands.command(name='quiz')
+    @commands.command(name='11111111111quiz')
     @is_allowed_channel()
     async def quiz(self, ctx):
         """Bắt đầu một câu hỏi quiz. Trả lời đúng nhận khô gà!"""

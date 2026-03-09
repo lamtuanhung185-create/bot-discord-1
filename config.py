@@ -53,7 +53,7 @@ DONATE_COOLDOWN = 3600  # Thời gian chờ giữa 2 lần gửi donate (giây, 
 # ===== CẤU HÌNH TIN NHẮN THEO GIỜ =====
 # ID kênh (hoặc danh sách ID) nhận tin nhắn tự động theo lịch
 # Chỉnh lịch & nội dung tin nhắn trong cogs/daily.py
-SCHEDULED_CHANNEL_ID = [1446865411814588426,1439553447384060047]  # Thay bằng ID kênh của bạn
+SCHEDULED_CHANNEL_ID = [1439553447384060047,1446865411814588426]  # Thay bằng ID kênh của bạn
 
 # ===== CẤU HÌNH CALL =====
 # Danh sách ID kênh được phép sử dụng chức năng gọi điện
@@ -69,6 +69,6 @@ CALL_ALLOWED_CHANNELS = [
 # ===== CẤU HÌNH PHOTOBOOTH =====
 # Role ID mặc định cho lệnh !chuphinh / /chuphinh
 # Thay 123 bằng ID role thực tế của bạn
-PHOTOBOOTH_ROLE_ID = 1469581542841122918
+PHOTOBOOTH_ROLE_ID = 1474535485488631911
 
 
