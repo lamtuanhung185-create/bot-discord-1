@@ -20,7 +20,6 @@ class Photobooth(commands.Cog):
 
     # ─── Prefix command: !chuphinh ────────────────────────────────────
     @commands.command(name="chuphinh", aliases=["photobooth", "groupphoto"])
-    @is_allowed_channel()
     async def chuphinh_prefix(self, ctx: commands.Context, targets: commands.Greedy[discord.Member] = None, *, role_id: int = None):
         """
         Create a group photo collage!
@@ -29,6 +28,10 @@ class Photobooth(commands.Cog):
           !chuphinh @user1 @user2 ...      → specific users
           !chuphinh 123456789              → members with that role ID
         """
+        # Kiểm tra kênh chat
+        if ctx.channel.id != 1439553447384060047:
+            return
+        
         # If users were mentioned, use them directly
         if targets:
             members = [m for m in targets if not m.bot]
@@ -65,6 +68,14 @@ class Photobooth(commands.Cog):
         user4: discord.Member = None,
         user5: discord.Member = None,
     ):
+        # Kiểm tra kênh chat
+        if interaction.channel.id != 1439553447384060047:
+            await interaction.response.send_message(
+                "❌ Lệnh này chỉ có thể sử dụng trong kênh chat được chỉ định!",
+                ephemeral=True
+            )
+            return
+        
         await interaction.response.defer(thinking=True)
 
         # Collect mentioned users
