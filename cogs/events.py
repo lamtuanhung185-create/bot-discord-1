@@ -59,7 +59,9 @@ class Events(commands.Cog):
             "nói lại":"https://media.discordapp.net/attachments/1439553447384060047/1478848140479168763/639127889_1254109610146206_4832400766879983140_n.png?ex=69a9e428&is=69a892a8&hm=aec2453fe5e2fba91a5a4d155c4f8808a45f1fbeceb0d800dc6a4295bfc39dc9&=&format=webp&quality=lossless&width=705&height=940",
             "test ielts":"https://youpass.vn/luyen-thi/ielts/reading?quiz_type=quiz&status=unfinished",
             "test toeic":"https://study4.com/tests/toeic/",
-            "test lgbt":"https://www.wikihow.com/Relationships/Lgbtq-Quiz"
+            "test lgbt":"https://www.wikihow.com/Relationships/Lgbtq-Quiz",
+            "lhp vs ptnk":"https://cdn.discordapp.com/attachments/1446866616452386856/1480959155090231498/1.mp4?ex=69b19231&is=69b040b1&hm=6b026ea88132491b280f100a4b40612da204a8cf81874c34714259a64d5a1204&",
+            "ptnk vs lhp":"https://cdn.discordapp.com/attachments/1446866616452386856/1480959155090231498/1.mp4?ex=69b19231&is=69b040b1&hm=6b026ea88132491b280f100a4b40612da204a8cf81874c34714259a64d5a1204&",
             
 
 
