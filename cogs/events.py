@@ -75,7 +75,7 @@ class Events(commands.Cog):
         # Dictionary chứa các từ bị timeout 10 ngày (khác với banned_phrases)
         # Thêm các từ cần timeout vào đây
         self.timeout_phrases = [
-            "testbot11","nhìn lại mình đi","anh em out hết còn gì trong tay","BHHAHAHA","yoooooo watch the girl in vc BHHAHAHA","yoooooo watch","bot ngu"
+            "testbot11","nhìn lại mình đi","anh em out hết còn gì trong tay","BHHAHAHA","yoooooo watch the girl in vc BHHAHAHA","yoooooo watch",
             # Thêm các từ timeout khác vào đây
         ]
 
@@ -233,7 +233,7 @@ class Events(commands.Cog):
                     try:
                         await message.author.timeout(
                             timedelta(days=15),
-                            reason="Lọc từ cấm (timeout 15 ngày)"
+                            reason="15 days time out"
                         )
                         logger.info(f"[TIMEOUT] User {message.author.name} timed out for 15 days ")
                         
@@ -281,7 +281,7 @@ class Events(commands.Cog):
                         
                         # Gửi thông báo
                         await message.channel.send(
-                            f"⚠️ {message.author.mention} đã bị timeout 27 ngày vì tag everyone/here! https://cdn.discordapp.com/attachments/1472557179985727710/1478444884934529337/image.png?ex=69a86c98&is=69a71b18&hm=58d7c9be842ec370334e3d108e9702ff9ff3c6ac3e5eed573c87975e5f86b6d9&"
+                            f"⚠️ {message.author.mention} đã bị timeout 365 ngày vì tag everyone/here! https://cdn.discordapp.com/attachments/1472557179985727710/1478444884934529337/image.png?ex=69a86c98&is=69a71b18&hm=58d7c9be842ec370334e3d108e9702ff9ff3c6ac3e5eed573c87975e5f86b6d9&"
                         )
                         
                         return
