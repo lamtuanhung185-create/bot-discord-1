@@ -239,7 +239,7 @@ class Events(commands.Cog):
                         
                         # Gửi thông báo
                         await message.channel.send(
-                            f"⚠️ {message.author.mention} https://cdn.discordapp.com/attachments/1439553447384060047/1481238208498106478/286.png?ex=69b29614&is=69b14494&hm=5c04738e74857d0416fe391a2222863670ccdd561611845109fb9ad693522965&!"
+                            f"⚠️ {message.author.mention} https://media.discordapp.net/attachments/1439553447384060047/1481389173846970629/image.png?ex=69b322ad&is=69b1d12d&hm=6063cacfdc6c86f4acf7421b1df4455bec2f3aa8c6d2652c62a079b6ee42a25a&=&format=webp&quality=lossless&width=851&height=729"
                         )
                     except discord.Forbidden:
                         logger.error(f"[ERROR] Bot missing 'Moderate Members' permission!")
@@ -534,7 +534,7 @@ class Events(commands.Cog):
                 
                 bot_message = await message.reply(embed=embed)
                 
-                # Xóa tin nhắn sau 30 giây
+                # Xóa tin nhắn sau 30 giây111
                 await asyncio.sleep(5)
                 try:
                     await bot_message.delete()
