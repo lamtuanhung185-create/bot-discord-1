@@ -57,7 +57,7 @@ SCHEDULED_CHANNEL_ID = [1439553447384060047,1446865411814588426]  # Thay bằng 
 
 # ===== CẤU HÌNH GIÁ XĂNG =====
 # ID kênh để gửi thông báo giá xăng hàng ngày lúc 10h sáng GMT+7
-FUEL_CHANNEL_ID = [1446865411814588426]  # Thay bằng ID kênh của bạn
+FUEL_CHANNEL_ID = [1446865411814588426111]  # Thay bằng ID kênh của bạn
 
 # ===== CẤU HÌNH CALL =====
 # Danh sách ID kênh được phép sử dụng chức năng gọi điện

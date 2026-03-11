@@ -62,6 +62,8 @@ class Events(commands.Cog):
             "test lgbt":"https://www.wikihow.com/Relationships/Lgbtq-Quiz",
             "lhp vs ptnk":"https://cdn.discordapp.com/attachments/1446866616452386856/1480959155090231498/1.mp4?ex=69b19231&is=69b040b1&hm=6b026ea88132491b280f100a4b40612da204a8cf81874c34714259a64d5a1204&",
             "ptnk vs lhp":"https://cdn.discordapp.com/attachments/1446866616452386856/1480959155090231498/1.mp4?ex=69b19231&is=69b040b1&hm=6b026ea88132491b280f100a4b40612da204a8cf81874c34714259a64d5a1204&",
+            "đề thi ở":"sử dụng lệnh /sukien sau đó gửi, nếu ko có thì tìm trong kênh https://discord.com/channels/1184348724999225355/1447538537753743460",
+            "đề thi ở đâu":"sử dụng lệnh /sukien sau đó gửi, nếu ko có thì tìm trong kênh https://discord.com/channels/1184348724999225355/1447538537753743460",
             
 
 
