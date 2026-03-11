@@ -433,7 +433,7 @@ class Events(commands.Cog):
             return  # Thêm return để tránh xử lý tiếp
         
         # Kiểm tra lệnh !avt để hiển thị avatar
-        if message_content.startswith('!avt'):
+        if message_content.startswith('!48535797355avt'):
             logger.info(f"Processing !avt command from {message.author.name} (ID: {message.author.id})")
             try:
                 # Kiểm tra xem có mention ai không
