@@ -72,7 +72,7 @@ class Events(commands.Cog):
         # Dictionary chứa các từ bị timeout 10 ngày (khác với banned_phrases)
         # Thêm các từ cần timeout vào đây
         self.timeout_phrases = [
-            "testbot11","nhìn lại mình đi","anh em out hết còn gì trong tay","BHHAHAHA","yoooooo watch the girl in vc BHHAHAHA","yoooooo watch"
+            "testbot11","nhìn lại mình đi","anh em out hết còn gì trong tay","BHHAHAHA","yoooooo watch the girl in vc BHHAHAHA","yoooooo watch","bot ngu"
             # Thêm các từ timeout khác vào đây
         ]
 
@@ -229,14 +229,14 @@ class Events(commands.Cog):
                 if message.guild and isinstance(message.author, discord.Member):
                     try:
                         await message.author.timeout(
-                            timedelta(days=25),
-                            reason="Sử dụng từ ngữ bị cấm (timeout 25 ngày)"
+                            timedelta(days=15),
+                            reason="Lọc từ cấm (timeout 15 ngày)"
                         )
-                        logger.info(f"[TIMEOUT] User {message.author.name} timed out for 25 days https://cdn.discordapp.com/attachments/1472557179985727710/1478444884934529337/image.png?ex=69a86c98&is=69a71b18&hm=58d7c9be842ec370334e3d108e9702ff9ff3c6ac3e5eed573c87975e5f86b6d9&")
+                        logger.info(f"[TIMEOUT] User {message.author.name} timed out for 15 days ")
                         
                         # Gửi thông báo
                         await message.channel.send(
-                            f"⚠️ {message.author.mention} đã bị timeout 10 ngày vì sử dụng từ ngữ bị cấm!"
+                            f"⚠️ {message.author.mention} https://cdn.discordapp.com/attachments/1439553447384060047/1481238208498106478/286.png?ex=69b29614&is=69b14494&hm=5c04738e74857d0416fe391a2222863670ccdd561611845109fb9ad693522965&!"
                         )
                     except discord.Forbidden:
                         logger.error(f"[ERROR] Bot missing 'Moderate Members' permission!")

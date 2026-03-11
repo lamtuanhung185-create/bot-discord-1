@@ -116,7 +116,8 @@ SCHEDULES = [
         "enabled": True,   # ← Đổi thành True để bật
     },
 
-
+        
+    
     {
         "hour": 19,
         "minute": 0,
@@ -178,7 +179,8 @@ SCHEDULES = [
     },
 
 
-     {
+
+    {
         "hour": 11,
         "minute": 00,
         "message": "i love u https://cdn.discordapp.com/attachments/1439553447384060047/1480942659697901761/yolo.mp4?ex=69b182d4&is=69b03154&hm=e99668d00d605fa16318a690927be3890962e5de47cb086f166791d4a42c2b3c&",
