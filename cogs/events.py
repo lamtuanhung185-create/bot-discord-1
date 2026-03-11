@@ -535,7 +535,7 @@ class Events(commands.Cog):
                 bot_message = await message.reply(embed=embed)
                 
                 # Xóa tin nhắn sau 30 giây
-                await asyncio.sleep(30)
+                await asyncio.sleep(5)
                 try:
                     await bot_message.delete()
                     await message.delete()
