@@ -550,8 +550,7 @@ class Events(commands.Cog):
         if message_content.startswith('!1timeout'):
             # Danh sách ID role được phép sử dụng
             ALLOWED_ROLE_IDS = [
-                1185158470958333953,  # Mod
-                1401564796553265162,1185183734153097296,1472560579007746079   # Supervisor
+               1401564796553265162,1472560579007746079,1241969973086388244   # Supervisor
             ]
             
             # Kiểm tra quyền admin hoặc role được phép
