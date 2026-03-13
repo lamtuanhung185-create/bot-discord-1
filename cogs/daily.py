@@ -151,7 +151,7 @@ SCHEDULES = [
 
     {
         "hour": 22,
-        "minute": 0,
+        "minute": 30,
         "message": "https://media.discordapp.net/attachments/1459229057706364939/1479841914747617471/AOI_d__liuIZgvQBSeExCONQG80BFCNjja76uYhOOl-FACOg0dVI_MRx6LP3pYrZxKSFDKy6wk9YbpNCqu2VLhOSggQGfRD4pSRd8DAmvUdPHqgtigUi3u8adCfRMy85jG0yjSmBsOGniMC5ABkTAmFjmR2a3WRSbr4W8GGvjwgspiQRuR9iRAs1600-rj.png?ex=69ad81ae&is=69ac302e&hm=91d028b61fa8c295d4ec5d599a96199d72a8f512cec7037a00f5ef45a18d1973&=&format=webp&quality=lossless&width=969&height=940",
         "embed_title": None,
         "embed_desc": None,
@@ -160,9 +160,9 @@ SCHEDULES = [
     },
 
     {
-        "hour": 23,
+        "hour": 22,
         "minute": 0,
-        "message": "https://media.discordapp.net/attachments/1459229057706364939/1479860919713534062/unnamed.jpg?ex=69ad9361&is=69ac41e1&hm=14902184144a9c2996aebc3c0c01bc0b60ca5644051d7b073e8c863b84a0c383&=&format=webp&width=1403&height=810",
+        "message": "https://cdn.discordapp.com/attachments/1472557179985727710/1482026717114663125/tiktok_hatoceo_7616575105610616082.mp4?ex=69b57470&is=69b422f0&hm=ad7cd6addd52e20ff68e83d70c57bc3d624fb4a88956bc3af2c26b539be88e35&",
         "embed_title": None,
         "embed_desc": None,
         "embed_color": None,
