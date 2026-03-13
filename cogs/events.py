@@ -122,9 +122,9 @@ class Events(commands.Cog):
         
         # Nếu member vừa bị timeout (before không bị timeout, after bị timeout)
         if not before.is_timed_out() and after.is_timed_out():
-            # Danh sách ID role Mod được tự động xóa timeout
+            # Danh sách ID role Mod được tự động xóa timeout 
             MOD_ROLE_IDS = [
-                1241969973086388244,1466120481873854637,1472560579007746079,1250918063000518696,1349964871462158376,1185184103650312234,1481296840988168303
+                1241969973086388244,1466120481873854637,1472560579007746079,1250918063000518696,1481296840988168303
                       # Supervisor role khác
             ]
             
