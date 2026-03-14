@@ -39,7 +39,7 @@ class Delete(commands.Cog):
         
         try:
             # Gửi thông báo đang xử lý
-            processing_msg = await ctx.send(f"🔍 Đang tìm và xóa tin nhắn của {member.mention}...")
+            processing_msg = await ctx.send(f"🔍 Đang quét tất cả kênh để xóa tin nhắn của {member.mention}...")
             
             # Xóa tin nhắn lệnh
             try:
@@ -47,29 +47,57 @@ class Delete(commands.Cog):
             except:
                 pass
             
-            # Lọc và xóa tin nhắn của user được đề cập
-            deleted = 0
+            # Thu thập tin nhắn của user từ tất cả các kênh
+            user_messages = []
             checked = 0
             
-            # Tăng limit lên để tìm đủ tin nhắn
-            async for message in ctx.channel.history(limit=1000):
-                checked += 1
-                if message.author.id == member.id:
-                    try:
-                        await message.delete()
-                        deleted += 1
-                        logger.info(f"Đã xóa tin nhắn ID {message.id} của {member}")
-                        if deleted >= amount:
-                            break
-                    except discord.errors.NotFound:
-                        logger.warning(f"Tin nhắn {message.id} không tìm thấy")
-                        continue
-                    except discord.errors.Forbidden:
-                        logger.error(f"Không có quyền xóa tin nhắn {message.id}")
-                        continue
-                    except Exception as e:
-                        logger.error(f"Lỗi khi xóa tin nhắn {message.id}: {e}")
-                        continue
+            # Duyệt qua tất cả kênh text trong server
+            for channel in ctx.guild.text_channels:
+                try:
+                    async for message in channel.history(limit=200):
+                        checked += 1
+                        if message.author.id == member.id:
+                            user_messages.append(message)
+                            if len(user_messages) >= 40:
+                                break
+                    
+                    if len(user_messages) >= 40:
+                        break
+                except discord.Forbidden:
+                    logger.warning(f"Không có quyền đọc lịch sử trong #{channel.name}")
+                    continue
+                except Exception as e:
+                    logger.error(f"Lỗi khi quét kênh #{channel.name}: {e}")
+                    continue
+            
+            # Sắp xếp theo thời gian (mới nhất trước)
+            user_messages.sort(key=lambda m: m.created_at, reverse=True)
+            
+            # Chỉ lấy 40 tin nhắn gần nhất của user
+            user_messages = user_messages[:40]
+            
+            # Xóa tin nhắn
+            deleted = 0
+            channels_affected = []
+            
+            for message in user_messages:
+                if deleted >= amount:
+                    break
+                try:
+                    await message.delete()
+                    deleted += 1
+                    if message.channel.name not in channels_affected:
+                        channels_affected.append(message.channel.name)
+                    logger.info(f"Đã xóa tin nhắn ID {message.id} của {member} trong #{message.channel.name}")
+                except discord.errors.NotFound:
+                    logger.warning(f"Tin nhắn {message.id} không tìm thấy")
+                    continue
+                except discord.errors.Forbidden:
+                    logger.error(f"Không có quyền xóa tin nhắn {message.id}")
+                    continue
+                except Exception as e:
+                    logger.error(f"Lỗi khi xóa tin nhắn {message.id}: {e}")
+                    continue
             
             # Xóa thông báo đang xử lý
             try:
@@ -79,11 +107,12 @@ class Delete(commands.Cog):
             
             # Gửi thông báo kết quả
             if deleted > 0:
-                result_msg = await ctx.send(f"✅ Đã xóa **{deleted}** tin nhắn của {member.mention} (đã kiểm tra {checked} tin nhắn)")
-                logger.info(f"{ctx.author} (roles: {user_role_ids}) đã xóa {deleted} tin nhắn của {member} trong #{ctx.channel.name}")
+                channels_info = f" trong {len(channels_affected)} kênh ({', '.join(['#' + ch for ch in channels_affected[:3]])}{'...' if len(channels_affected) > 3 else ''})"
+                result_msg = await ctx.send(f"✅ Đã xóa **{deleted}** tin nhắn của {member.mention}{channels_info} (đã kiểm tra {checked} tin nhắn)")
+                logger.info(f"{ctx.author} (roles: {user_role_ids}) đã xóa {deleted} tin nhắn của {member} trong các kênh: {channels_affected}")
             else:
-                result_msg = await ctx.send(f"⚠️ Không tìm thấy tin nhắn nào của {member.mention} trong {checked} tin nhắn gần nhất")
-                logger.warning(f"{ctx.author} không tìm thấy tin nhắn của {member} trong #{ctx.channel.name}")
+                result_msg = await ctx.send(f"⚠️ Không tìm thấy tin nhắn nào của {member.mention} trong {checked} tin nhắn đã kiểm tra")
+                logger.warning(f"{ctx.author} không tìm thấy tin nhắn của {member}")
             
             # Tự xóa sau 5 giây
             await result_msg.delete(delay=5)
