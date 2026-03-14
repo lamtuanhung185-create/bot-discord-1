@@ -201,7 +201,16 @@ SCHEDULES = [
         "enabled": True,   # ← Đổi thành True để bật
     },
 
-
+    
+    {
+        "hour": 15,
+        "minute": 00,
+        "message": "https://cdn.discordapp.com/attachments/1439553447384060047/1482287072365776965/image.png?ex=69b666e9&is=69b51569&hm=88ed6912f0d638edfb12b4227dde88a53a5c883839a5aca7a7c49cfa75979fff&",
+        "embed_title": None,
+        "embed_desc": None,
+        "embed_color": None,
+        "enabled": True,   # ← Đổi thành True để bật
+    },
 
 
 ]
