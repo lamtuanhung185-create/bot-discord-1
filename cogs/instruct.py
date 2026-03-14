@@ -20,7 +20,7 @@ class Instruct(commands.Cog):
             return
 
         embed = discord.Embed(
-            title="Chào mừng bạn mới!",
+            title="Chào mừng bạn mới! 🎉",
             description=(
                 f"Xin chào {member.mention}! 👋\n\n"
                 f"Vui lòng xem hướng dẫn tại đây: {GUIDE_LINK}"
