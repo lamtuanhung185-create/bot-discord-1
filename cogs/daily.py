@@ -142,7 +142,7 @@ SCHEDULES = [
    {
         "hour": 21,
         "minute": 0,
-        "message": "https://media.discordapp.net/attachments/1439553447384060047/1479840462448754999/AOI_d_9w4Lqu_KIU7eeKqZelwr5Lq_fvfcLHk7gH9sNT9wDUZW7LkKWyi1PMBB197o4DiC0Yu69nO3sKDK-4hnzI3WuJFVbqvmBLkv4PNr8bWk04fiyE2U5W8pr-07vLcNHQbM9YNWS9acEZsw4NcVWJemYxAv2PpvELdOWn6kuN9bZ9YCOls1600-rj.png?ex=69ad8054&is=69ac2ed4&hm=067f38714323cfbd3c05b127d0c9eb84b5645630bd4f6dd5161b57a67d920e10&=&format=webp&quality=lossless&width=626&height=940",
+        "message": "https://cdn.discordapp.com/attachments/1482409558336082094/1482738187225796691/3.mp4?ex=69b80b0b&is=69b6b98b&hm=f8651bdfc9eaacd38ad88d76a6cf7376f3d85189ff846aee9b60f87855889397&",
         "embed_title": None,
         "embed_desc": None,
         "embed_color": None,
