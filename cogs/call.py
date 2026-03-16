@@ -24,14 +24,7 @@ class Call(commands.Cog):
 
 	def _is_mod(self, member: discord.Member) -> bool:
 		mod_role_ids = getattr(config, "MOD_ROLE_IDS", DEFAULT_MOD_ROLE_IDS)
-		has_mod_role = any(role.id in mod_role_ids for role in member.roles)
-		has_mod_permission = (
-			member.guild_permissions.administrator
-			or member.guild_permissions.manage_guild
-			or member.guild_permissions.manage_messages
-			or member.guild_permissions.moderate_members
-		)
-		return has_mod_role or has_mod_permission
+		return any(role.id in mod_role_ids for role in member.roles)
 
 	def _get_active_mods(self, guild: discord.Guild) -> list[discord.Member]:
 		active_statuses = {discord.Status.online, discord.Status.idle, discord.Status.dnd}
