@@ -132,7 +132,7 @@ class Call(commands.Cog):
 			lines.append(f"… và **{extra_count}** mod khác đang hoạt động")
 
 		embed = discord.Embed(
-			title="🚨 CALL 911 - Mod đang hoạt động",
+			title="🚨 CALL 911 - Mod đang hoạt động.",
 			description="\n".join(lines),
 			color=discord.Color.red(),
 		)
