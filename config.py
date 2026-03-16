@@ -64,15 +64,17 @@ FUEL_CHANNEL_ID = [1446865411814588426111]  # Thay bằng ID kênh của bạn
 
 CALL_ALLOWED_CHANNELS = [
     # Thêm ID kênh vào đây
-   1446865411814588426
+   1439553447384060047
 
 
 
 ]
 
 # ===== CẤU HÌNH PHOTOBOOTH =====
-# Role ID mặc định cho lệnh !chuphinh / /chuphinh
+# Role ID mặc định cho lệnh !chuphinh / /chuphinh 1472557179985727710 1446865411814588426
 # Thay 123 bằng ID role thực tế của bạn
 PHOTOBOOTH_ROLE_ID = 1474535485488631911
+
+
 
 
