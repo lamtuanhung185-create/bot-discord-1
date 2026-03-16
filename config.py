@@ -6,6 +6,7 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 OWNER_ID = os.getenv('OWNER_ID')
 OPENWEATHER_API_KEY = os.getenv('OPENWEATHER_API_KEY', '')
+GROQ_API_KEY = os.getenv('GROQ_API_KEY', '')
 
 # Danh sách ID các kênh được phép sử dụng bot
 # Thay thế các ID này bằng ID kênh của bạn
@@ -64,7 +65,7 @@ FUEL_CHANNEL_ID = [1446865411814588426111]  # Thay bằng ID kênh của bạn
 
 CALL_ALLOWED_CHANNELS = [
     # Thêm ID kênh vào đây
-   1439553447384060047
+   1446865411814588426
 
 
 
