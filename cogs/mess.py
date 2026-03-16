@@ -217,7 +217,7 @@ class MessageModerator(commands.Cog):
             member = trigger_msg.guild.get_member(toxic_msg.author.id)
 
         if member is None:
-            await trigger_msg.reply("Không tìm thấy thành viên trong server.", mention_author=False)
+            await trigger_msg.reply("Không tìm thấy thành viên trong server... Vui lòng thử lại sau.", mention_author=False)
             return
 
         # Không timeout owner/admin
