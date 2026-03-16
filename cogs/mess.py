@@ -21,7 +21,7 @@ Quy tắc chấm điểm (0-100):
 - 0-30: Bình thường, không có vấn đề
 - 31-50: Hơi thô nhưng chấp nhận được
 - 51-75: Tục tĩu hoặc xúc phạm ở mức trung bình
-- 76-100: Rất tục tĩu, xúc phạm nặng, thù ghét, đe dọa
+- 76-100: Rất tục tĩu, xúc phạm nặng, thù ghét, đe dọa, hị hack nick discord (spam kênh discord.gg)
 
 Lưu ý:
 - Phân tích cả tiếng Việt không dấu, viết tắt, teencode
