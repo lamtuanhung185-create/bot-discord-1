@@ -150,14 +150,24 @@ class MessageModerator(commands.Cog):
                         description=f"Tổng điểm tục tĩu: **{score}/100**\nLý do: {reason}\n\nKhông có cá nhân nào vượt ngưỡng timeout ({TOXICITY_THRESHOLD}).",
                         color=discord.Color.yellow(),
                     )
-                    await message.reply(embed=embed, mention_author=False)
+                    notify = await message.reply(embed=embed, mention_author=False)
+                    await asyncio.sleep(5)
+                    try:
+                        await notify.delete()
+                    except discord.NotFound:
+                        pass
             else:
                 embed = discord.Embed(
                     title="Kết quả kiểm tra tin nhắn",
                     description=f"Điểm tục tĩu: **{score}/100**\nLý do: {reason}",
                     color=discord.Color.green() if score < 50 else discord.Color.yellow(),
                 )
-                await message.reply(embed=embed, mention_author=False)
+                notify = await message.reply(embed=embed, mention_author=False)
+                await asyncio.sleep(5)
+                try:
+                    await notify.delete()
+                except discord.NotFound:
+                    pass
             return
 
         # Xử lý khi reply vào 1 tin nhắn cụ thể
@@ -192,7 +202,12 @@ class MessageModerator(commands.Cog):
                 ),
                 color=discord.Color.green() if score < 50 else discord.Color.yellow(),
             )
-            await message.reply(embed=embed, mention_author=False)
+            notify = await message.reply(embed=embed, mention_author=False)
+            await asyncio.sleep(5)
+            try:
+                await notify.delete()
+            except discord.NotFound:
+                pass
 
     async def _timeout_user(self, trigger_msg: discord.Message, toxic_msg: discord.Message, score: int, reason: str):
         """Timeout người dùng có tin nhắn tục tĩu."""
