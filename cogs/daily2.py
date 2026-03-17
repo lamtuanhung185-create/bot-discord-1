@@ -23,9 +23,11 @@ class Daily2(commands.Cog):
 
     # ─── Daily morning message ────────────────────────────────────────────
 
-    @tasks.loop(hours=24)
+    @tasks.loop(time=[
+        time(hour=5, minute=30, tzinfo=timezone(timedelta(hours=7))),  # 5:30 AM GMT+7
+    ])
     async def daily_message_task(self):
-        """Gửi tin nhắn buổi sáng lúc 5h30 GMT+7 (22h30 UTC)."""
+        """Gửi tin nhắn buổi sáng lúc 5h30 GMT+7."""
         try:
             channel = self.bot.get_channel(config.DAILY_MESSAGE_CHANNEL_ID)
             if channel:
@@ -48,26 +50,15 @@ class Daily2(commands.Cog):
 
     @daily_message_task.before_loop
     async def before_daily_message(self):
-        """Đợi bot sẵn sàng rồi sleep đến 22h30 UTC (5h30 GMT+7) tiếp theo."""
+        """Đợi bot sẵn sàng trước khi bắt đầu daily message."""
         await self.bot.wait_until_ready()
-
-        now = datetime.now(timezone.utc)
-        target = now.replace(hour=22, minute=30, second=0, microsecond=0)
-
-        if now.hour > 22 or (now.hour == 22 and now.minute >= 30):
-            target += timedelta(days=1)
-
-        wait_seconds = (target - now).total_seconds()
-        logger.info(
-            f"Waiting {wait_seconds:.0f}s until next daily message at 5:30 AM GMT+7 (22:30 UTC)"
-        )
-        await asyncio.sleep(wait_seconds)
+        logger.info("Daily message task ready — will run at 5:30 AM GMT+7")
 
     # ─── Countdown task ───────────────────────────────────────────────────
 
     @tasks.loop(time=[
-        time(hour=1, minute=0, tzinfo=timezone.utc),   # 8:00 AM GMT+7
-        time(hour=16, minute=0, tzinfo=timezone.utc),   # 23:00 PM GMT+7
+        time(hour=8, minute=0, tzinfo=timezone(timedelta(hours=7))),   # 8:00 AM GMT+7
+        time(hour=23, minute=0, tzinfo=timezone(timedelta(hours=7))),  # 23:00 PM GMT+7
     ])
     async def countdown_task(self):
         """Gửi đếm ngược lúc 8h00 và 23h00 GMT+7."""
@@ -160,8 +151,8 @@ class Daily2(commands.Cog):
     # ─── THPT Reminder task ───────────────────────────────────────────────
 
     @tasks.loop(time=[
-        time(hour=0, minute=30, tzinfo=timezone.utc),   # 7:30 AM GMT+7
-        time(hour=16, minute=30, tzinfo=timezone.utc),   # 23:30 PM GMT+7
+        time(hour=7, minute=30, tzinfo=timezone(timedelta(hours=7))),   # 7:30 AM GMT+7
+        time(hour=23, minute=30, tzinfo=timezone(timedelta(hours=7))),  # 23:30 PM GMT+7
     ])
     async def thpt_reminder_task(self):
         """Gửi đếm ngược THPT lúc 7h30 và 23h30 GMT+7."""
