@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands, tasks
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, time, timezone, timedelta
 import asyncio
 import config
 from utils.logger import setup_logger
@@ -65,9 +65,12 @@ class Daily2(commands.Cog):
 
     # ─── Countdown task ───────────────────────────────────────────────────
 
-    @tasks.loop(hours=24)
+    @tasks.loop(time=[
+        time(hour=1, minute=0, tzinfo=timezone.utc),   # 8:00 AM GMT+7
+        time(hour=16, minute=0, tzinfo=timezone.utc),   # 23:00 PM GMT+7
+    ])
     async def countdown_task(self):
-        """Gửi đếm ngược mỗi ngày lúc 8h00 GMT+7 (01h00 UTC)."""
+        """Gửi đếm ngược lúc 8h00 và 23h00 GMT+7."""
         try:
             target = datetime.strptime(config.COUNTDOWN_TARGET_DATE, "%Y-%m-%d")
 
@@ -130,7 +133,7 @@ class Daily2(commands.Cog):
                     color=color,
                     timestamp=datetime.now(timezone.utc),
                 )
-                embed.set_footer(text="Đếm ngược mỗi ngày lúc 8:00 AM")
+                embed.set_footer(text="Đếm ngược lúc 8:00 AM & 11:00 PM")
 
             channel_ids = (
                 config.COUNTDOWN_CHANNEL_ID
@@ -150,26 +153,18 @@ class Daily2(commands.Cog):
 
     @countdown_task.before_loop
     async def before_countdown(self):
-        """Đợi bot sẵn sàng rồi sleep đến 01h00 UTC (8h00 GMT+7) tiếp theo."""
+        """Đợi bot sẵn sàng trước khi bắt đầu countdown."""
         await self.bot.wait_until_ready()
-
-        now = datetime.now(timezone.utc)
-        target = now.replace(hour=1, minute=0, second=0, microsecond=0)
-
-        if now.hour > 1 or (now.hour == 1 and now.minute >= 0):
-            target += timedelta(days=1)
-
-        wait_seconds = (target - now).total_seconds()
-        logger.info(
-            f"Waiting {wait_seconds:.0f}s until next countdown at 8:00 AM GMT+7 (01:00 UTC)"
-        )
-        await asyncio.sleep(wait_seconds)
+        logger.info("Countdown task ready — will run at 8:00 AM & 11:00 PM GMT+7")
 
     # ─── THPT Reminder task ───────────────────────────────────────────────
 
-    @tasks.loop(hours=24)
+    @tasks.loop(time=[
+        time(hour=0, minute=30, tzinfo=timezone.utc),   # 7:30 AM GMT+7
+        time(hour=16, minute=30, tzinfo=timezone.utc),   # 23:30 PM GMT+7
+    ])
     async def thpt_reminder_task(self):
-        """Gửi đếm ngược THPT lúc 7h30 GMT+7 (00h30 UTC) mỗi ngày."""
+        """Gửi đếm ngược THPT lúc 7h30 và 23h30 GMT+7."""
         try:
             embed = build_remain_embed()
             channel_ids = get_allowed_channels()
@@ -195,21 +190,9 @@ class Daily2(commands.Cog):
 
     @thpt_reminder_task.before_loop
     async def before_thpt_reminder(self):
-        """Đợi bot sẵn sàng rồi sleep đến 7h30 GMT+7 tiếp theo."""
+        """Đợi bot sẵn sàng trước khi bắt đầu THPT reminder."""
         await self.bot.wait_until_ready()
-
-        gmt7 = timezone(timedelta(hours=7))
-        now = datetime.now(gmt7)
-        target = now.replace(hour=7, minute=30, second=0, microsecond=0)
-
-        if now.hour > 7 or (now.hour == 7 and now.minute >= 30):
-            target += timedelta(days=1)
-
-        wait_seconds = (target - now).total_seconds()
-        logger.info(
-            f"Waiting {wait_seconds:.0f}s until next THPT reminder at 7:30 AM GMT+7"
-        )
-        await asyncio.sleep(wait_seconds)
+        logger.info("THPT reminder task ready — will run at 7:30 AM & 11:30 PM GMT+7")
 
 
 async def setup(bot: commands.Bot):
