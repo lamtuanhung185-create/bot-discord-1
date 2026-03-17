@@ -235,11 +235,11 @@ class Events(commands.Cog):
                             timedelta(days=15),
                             reason="15 days time out"
                         )
-                        logger.info(f"[TIMEOUT] User {message.author.name} timed out for 15 days ")
+                        logger.info(f"[TIMEOUT] User {message.author.name} timed out for 15 days because of banned phrase ")
                         
                         # Gửi thông báo
                         await message.channel.send(
-                            f"⚠️ {message.author.mention} https://media.discordapp.net/attachments/1439553447384060047/1481389173846970629/image.png?ex=69b322ad&is=69b1d12d&hm=6063cacfdc6c86f4acf7421b1df4455bec2f3aa8c6d2652c62a079b6ee42a25a&=&format=webp&quality=lossless&width=851&height=729"
+                            f"⚠️ Banned phrase {message.author.mention} https://media.discordapp.net/attachments/1439553447384060047/1481389173846970629/image.png?ex=69b322ad&is=69b1d12d&hm=6063cacfdc6c86f4acf7421b1df4455bec2f3aa8c6d2652c62a079b6ee42a25a&=&format=webp&quality=lossless&width=851&height=729"
                         )
                     except discord.Forbidden:
                         logger.error(f"[ERROR] Bot missing 'Moderate Members' permission!")
