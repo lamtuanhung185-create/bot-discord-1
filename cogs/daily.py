@@ -139,56 +139,11 @@ SCHEDULES = [
         "enabled": True,   # ← Đổi thành True để bật
     },
 
-   {
-        "hour": 21,
-        "minute": 0,
-        "message": "https://cdn.discordapp.com/attachments/1482409558336082094/1482738187225796691/3.mp4?ex=69b80b0b&is=69b6b98b&hm=f8651bdfc9eaacd38ad88d76a6cf7376f3d85189ff846aee9b60f87855889397&",
-        "embed_title": None,
-        "embed_desc": None,
-        "embed_color": None,
-        "enabled": True,   # ← Đổi thành True để bật
-    },
+  
 
-    {
-        "hour": 22,
-        "minute": 30,
-        "message": "https://media.discordapp.net/attachments/1459229057706364939/1479841914747617471/AOI_d__liuIZgvQBSeExCONQG80BFCNjja76uYhOOl-FACOg0dVI_MRx6LP3pYrZxKSFDKy6wk9YbpNCqu2VLhOSggQGfRD4pSRd8DAmvUdPHqgtigUi3u8adCfRMy85jG0yjSmBsOGniMC5ABkTAmFjmR2a3WRSbr4W8GGvjwgspiQRuR9iRAs1600-rj.png?ex=69ad81ae&is=69ac302e&hm=91d028b61fa8c295d4ec5d599a96199d72a8f512cec7037a00f5ef45a18d1973&=&format=webp&quality=lossless&width=969&height=940",
-        "embed_title": None,
-        "embed_desc": None,
-        "embed_color": None,
-        "enabled": True,   # ← Đổi thành True để bật
-    },
+    
 
-    {
-        "hour": 22,
-        "minute": 0,
-        "message": "https://cdn.discordapp.com/attachments/1472557179985727710/1482026717114663125/tiktok_hatoceo_7616575105610616082.mp4?ex=69b57470&is=69b422f0&hm=ad7cd6addd52e20ff68e83d70c57bc3d624fb4a88956bc3af2c26b539be88e35&",
-        "embed_title": None,
-        "embed_desc": None,
-        "embed_color": None,
-        "enabled": True,   # ← Đổi thành True để bật
-    },
-
-     {
-        "hour": 0,
-        "minute": 0,
-        "message": "Xin chào khán giả của Spotify Mình là Phúc Nguyên đến từ đội hình tân binh toàn năng.Các ca khúc tân binh toàn năng đã có mặt trên Spotify rồi, đây là những bài hát mà mình rất trân trọng vì là kỉ niệm đẹp và hành trình trưởng thành mà mình được đồng hành cùng các anh em tại tân binh toàn năng Với mình, mỗi sân khấu là một kỉ niệm khó quên, là những giây phút áp lực lẫn hạnh phúc mà mình tin bạn sẽ cảm nhận qua âm nhạc Bạn thích ca khúc nào trong tân bình toàn năng? Hãy stream nó thật nhiều nhé! \nhttps://open.spotify.com/playlist/7v6nuLRgX7jpaubaQmcJDv?si=JTONuPrdQ2eQ4nCTpTHPjg&pi=Q_74oRejRkuTD",
-        "embed_title": None,
-        "embed_desc": None,
-        "embed_color": None,
-        "enabled": False,   # ← Đổi thành True để bật
-    },
-
-     {
-        "hour": 22,
-        "minute": 30,
-        "message": "i love u https://cdn.discordapp.com/attachments/1439553447384060047/1480942659697901761/yolo.mp4?ex=69b182d4&is=69b03154&hm=e99668d00d605fa16318a690927be3890962e5de47cb086f166791d4a42c2b3c&",
-        "embed_title": None,
-        "embed_desc": None,
-        "embed_color": None,
-        "enabled": False,   # ← Đổi thành True để bật
-    },
-
+   
 
 
     {
