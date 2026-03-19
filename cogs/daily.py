@@ -167,6 +167,23 @@ SCHEDULES = [
         "enabled": True,   # ← Đổi thành True để bật
     },
 
+    
+
+    {
+        "hour": 18,
+        "minute": 00,
+        "message": "https://media.giphy.com/media/OXt6tCIUlajGsbjhWp/giphy.gif",
+        "embed_title": None,
+        "embed_desc": None,
+        "embed_color": None,
+        "enabled": True,   # ← Đổi thành True để bật
+    },
+
+
+
+
+
+
 
 ]
 
