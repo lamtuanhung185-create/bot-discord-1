@@ -106,11 +106,11 @@ class Daily2(commands.Cog):
                 embed.set_footer(text="🔥 Ngày đã đến!")
             else:
                 if days_left <= 3:
-                    color, urgency = discord.Color.red(), "🚨 SẮP ĐẾN RỒI!"
+                    color, urgency = discord.Color.red(), "🚨 Bạn đã chuẩn bị cho đợt 2 ?"
                 elif days_left <= 7:
-                    color, urgency = discord.Color.orange(), "⚠️ Sắp tới rồi!"
+                    color, urgency = discord.Color.orange(), "⚠️ Chỉ còn 1 tuần!"
                 elif days_left <= 30:
-                    color, urgency = discord.Color.yellow(), "📢 Chuẩn bị nhé!"
+                    color, urgency = discord.Color.yellow(), "📢 Còn sớm mà cứ chơi đi"
                 else:
                     color, urgency = discord.Color.blue(), "📅 Còn khá lâu"
 
