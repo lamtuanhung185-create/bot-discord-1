@@ -30,8 +30,8 @@ SYSTEM_PROMPT = """Bạn là hệ thống phát hiện tin nhắn SPAM trên Dis
 Đánh giá mức độ spam / lừa đảo / quảng cáo rác (0-100):
 - 0-30: Tin bình thường, trò chuyện, hỏi đáp hợp lệ
 - 31-50: Hơi giống quảng cáo nhưng có thể chấp nhận
-- 51-75: Nghi ngờ spam, nhắc nhiều lần link, mời server lạ, "free nitro", kiểu nick bị hack
-- 76-100: Rõ ràng spam/scam: flood link discord.gg / discord.com/invite, "check this out", crypto/airdrop lừa đảo, clone link, yêu cầu bấm link gấp, copy-paste quảng cáo
+- 51-75: Nghi ngờ spam, nhắc nhiều lần link, mời server lạ, "free nitro", kiểu nick bị hack,share 1 file nén ( rar bất thường)
+- 76-100: Rõ ràng spam/scam: flood link discord.gg / discord.com/invite, "check this out", crypto/airdrop lừa đảo, clone link, yêu cầu bấm link gấp, copy-paste quảng cáo, share 1 file nén ( rar bất thường)
 
 Lưu ý:
 - Phân tích teencode, không dấu
