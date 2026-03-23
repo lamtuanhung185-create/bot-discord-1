@@ -49,7 +49,7 @@ DONATE_CHANNEL_ID = [1446865411814588426]  # Thay bằng ID kênh của bạn1
 SPAM_WATCH_CHANNEL_IDS = [1411520340508807178,1485265777102950430]
 
 # True = log + reaction ⏳ trên tin + typing khi gọi AI (tắt khi đã ổn định). Bot cần quyền Add Reactions.
-SPAM_DEBUG = True
+SPAM_DEBUG = False
 
 
 
