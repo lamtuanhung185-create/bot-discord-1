@@ -194,7 +194,7 @@ class SpamWatch(commands.Cog):
         preview = _message_text_for_ai(message)[:500] or "(không có nội dung chữ)"
 
         try:
-            await message.delete()
+            # await message.delete()
         except discord.NotFound:
             return
         except discord.Forbidden:
