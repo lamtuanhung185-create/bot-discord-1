@@ -46,7 +46,7 @@ DONATE_CHANNEL_ID = [1446865411814588426]  # Thay bằng ID kênh của bạn1
 
 # Kênh bot theo dõi spam: xóa tin vi phạm + gửi thông báo (cogs/spam.py) 1485265777102950430
 # ID kênh = số dài (Developer Mode: chuột phải kênh → Copy Channel ID), KHÔNG phải #123456 trên giao diện
-SPAM_WATCH_CHANNEL_IDS = [1485265777102950430]
+SPAM_WATCH_CHANNEL_IDS = [1411520340508807178]
 
 # True = log + reaction ⏳ trên tin + typing khi gọi AI (tắt khi đã ổn định). Bot cần quyền Add Reactions.
 SPAM_DEBUG = True
