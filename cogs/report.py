@@ -17,19 +17,17 @@ GROQ_MODEL = "llama-3.3-70b-versatile"
 REPORT_FETCH_LIMIT = 250
 REPORT_MESSAGE_COUNT = 10
 MAX_CONTEXT_CHARS = 6000
-SEVERITY_TIMEOUT_THRESHOLD = 70
+SEVERITY_TIMEOUT_THRESHOLD = 80
 TIMEOUT_HIGH_SEVERITY = timedelta(hours=6)
 
 SYSTEM_PROMPT = """Bạn là trợ lý kiểm duyệt Discord. Bạn nhận tối đa 10 tin nhắn gần đây của MỘT người dùng trong một kênh (có thể tiếng Việt/Anh, teencode).
 
-Nhiệm vụ: đánh giá xem có nên áp dụng **timeout** (tạm khóa chat) hay không, dựa trên: quấy rối, thù ghét, đe dọa, lạm dụng nặng, spam/scam rõ ràng, NSFW công khai, v.v.
+Nhiệm vụ: đánh giá mức độ vi phạm (quấy rối, thù ghét, đe dọa, lạm dụng nặng, spam/scam rõ ràng, NSFW công khai, v.v.) — **hệ thống chỉ tự động timeout khi severity > 80** (6 giờ); dưới hoặc bằng 80 thì không timeout.
 - Phân biệt đùa vừa phải / tranh luận bình thường với hành vi độc hại thật sự.
 - severity: 0-100 (mức độ vi phạm tổng thể trong các tin đã cho).
 
 Chỉ trả lời ĐÚNG một JSON (không markdown, không giải thích ngoài JSON):
-{"should_timeout": <true hoặc false>, "duration_minutes": <số nguyên 5-60 nếu should_timeout true và severity ≤70, ngược lại 0>, "severity": <0-100>, "reason": "<giải thích ngắn gọn bằng tiếng Việt>"}
-
-Lưu: severity > 70 = vi phạm nặng; hệ thống sẽ áp dụng timeout 6 giờ (không dùng duration_minutes cho trường hợp đó)."""
+{"should_timeout": <true nếu theo bạn nên timeout, false nếu không — chỉ mang tính tham khảo>, "duration_minutes": 0, "severity": <0-100>, "reason": "<giải thích ngắn gọn bằng tiếng Việt>"}"""
 
 
 def _message_text_for_ai(message: discord.Message) -> str:
@@ -115,10 +113,6 @@ async def _analyze_report(context_text: str) -> dict | None:
         return None
 
 
-def _clamp_duration(minutes: int) -> int:
-    return max(5, min(60, int(minutes)))
-
-
 async def _maybe_timeout(
     guild: discord.Guild,
     moderator: discord.abc.User,
@@ -158,7 +152,6 @@ def _result_embed(
     timeout_note: str | None,
     high_severity: bool,
 ) -> discord.Embed:
-    should = bool(analysis.get("should_timeout"))
     sev = analysis.get("severity", 0)
     try:
         sev = int(sev)
@@ -166,13 +159,8 @@ def _result_embed(
         sev = 0
     sev = max(0, min(100, sev))
     reason = str(analysis.get("reason", "Không có mô tả."))[:1024]
-    dur = analysis.get("duration_minutes", 0)
-    try:
-        dur = int(dur)
-    except (TypeError, ValueError):
-        dur = 0
 
-    wants_timeout = high_severity or should
+    wants_timeout = high_severity
     color = discord.Color.red() if wants_timeout else discord.Color.green()
     title = "📋 Kết quả"
     desc = (
@@ -183,17 +171,17 @@ def _result_embed(
     )
     if high_severity:
         desc += f"**Vi phạm >{SEVERITY_TIMEOUT_THRESHOLD}:** áp dụng timeout **6 giờ** (khi đủ quyền).\n"
-    elif should:
-        desc += f"**Thời gian gợi ý:** {_clamp_duration(dur)} phút\n"
 
     embed = discord.Embed(title=title, description=desc, color=color)
     embed.add_field(name="Lý do", value=reason, inline=False)
     if wants_timeout and not timeout_applied and timeout_note:
         embed.add_field(name="Timeout tự động", value=timeout_note, inline=False)
     elif timeout_applied and high_severity:
-        embed.add_field(name="Timeout tự động", value="Đã timeout **6 giờ** (severity > 70).", inline=False)
-    elif timeout_applied:
-        embed.add_field(name="Timeout tự động", value="Đã áp dụng theo khuyến nghị AI.", inline=False)
+        embed.add_field(
+            name="Timeout tự động",
+            value=f"Đã timeout **6 giờ** (severity > {SEVERITY_TIMEOUT_THRESHOLD}).",
+            inline=False,
+        )
     return embed
 
 
@@ -241,13 +229,6 @@ class Report(commands.Cog):
                 color=discord.Color.red(),
             )
 
-        should = bool(analysis.get("should_timeout"))
-        raw_dur = analysis.get("duration_minutes", 10)
-        try:
-            raw_dur = int(raw_dur)
-        except (TypeError, ValueError):
-            raw_dur = 10
-
         sev = analysis.get("severity", 0)
         try:
             sev = int(sev)
@@ -265,15 +246,6 @@ class Report(commands.Cog):
                 target,
                 True,
                 TIMEOUT_HIGH_SEVERITY,
-                str(analysis.get("reason", "")),
-            )
-        elif should:
-            applied, note = await _maybe_timeout(
-                guild,
-                author,
-                target,
-                True,
-                timedelta(minutes=_clamp_duration(raw_dur)),
                 str(analysis.get("reason", "")),
             )
 
