@@ -123,8 +123,6 @@ async def _maybe_timeout(
 ) -> tuple[bool, str | None]:
     if not should or delta is None:
         return False, None
-    if not isinstance(moderator, discord.Member) or not moderator.guild_permissions.moderate_members:
-        return False, "Chỉ thành viên có quyền **Moderate Members** mới để bot tự động timeout."
     me = guild.me
     if not me or not me.guild_permissions.moderate_members:
         return False, "Bot thiếu quyền **Moderate Members**."
